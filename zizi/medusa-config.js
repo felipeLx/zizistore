@@ -35,13 +35,6 @@ const REDIS_URL = process.env.REDIS_URL || "redis://localhost:6379";
 
 const plugins = [
   `medusa-fulfillment-manual`,
-  `medusa-payment-manual`,
-  {
-    resolve: `@medusajs/file-local`,
-    options: {
-      upload_dir: "uploads",
-    },
-  },
   {
     resolve: "@medusajs/admin",
     /** @type {import('@medusajs/admin').PluginOptions} */
@@ -49,6 +42,53 @@ const plugins = [
       autoRebuild: true,
       develop: {
         open: process.env.OPEN_BROWSER !== "false",
+      },
+    },
+  },
+  {
+    resolve: `medusa-payment-stripe`,
+    options: {
+      api_key: process.env.STRIPE_API_KEY,
+      webhook_secret: process.env.STRIPE_WEBHOOK_SECRET,
+      payment_description: "Stripe - meio de pagamentos para internet"
+    },
+  },
+  {
+    resolve: `medusa-file-supabase`,
+    options: {
+      project_ref: process.env.PROJECT_REF,
+      service_key: process.env.SERVICE_KEY,
+      bucket_name: process.env.BUCKET_NAME,
+    },
+  },
+  {
+    resolve: `medusa-plugin-algolia`,
+    options: {
+      applicationId: process.env.ALGOLIA_APP_ID,
+      adminApiKey: process.env.ALGOLIA_ADMIN_API_KEY,
+      settings: {
+        products: {
+          indexSettings: {
+            searchableAttributes: ["title", "description"],
+            attributesToRetrieve: [
+              "id",
+              "title",
+              "description",
+              "handle",
+              "thumbnail",
+              "variants",
+              "variant_sku",
+              "options",
+              "collection_title",
+              "collection_handle",
+              "images",
+            ],
+          },
+          transformer: (product) => ({ 
+            objectID: product.id, 
+            // other attributes...
+          }),
+        },
       },
     },
   },
@@ -76,8 +116,13 @@ const projectConfig = {
   store_cors: STORE_CORS,
   database_url: DATABASE_URL,
   admin_cors: ADMIN_CORS,
+  database_type: "postgres",
   // Uncomment the following lines to enable REDIS
-  // redis_url: REDIS_URL
+  // redis_url: CACHE_REDIS_URL,
+  database_extra:
+      process.env.NODE_ENV !== "development"
+        ? { ssl: { rejectUnauthorized: false } }
+        : {},
 };
 
 /** @type {import('@medusajs/medusa').ConfigModule} */
