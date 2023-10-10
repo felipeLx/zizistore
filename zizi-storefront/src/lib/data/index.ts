@@ -21,10 +21,10 @@ export type ProductCategoryWithChildren = Omit<
 
 // The feature flag is set in the store.config.json file. Restart the server after changing the flag for the changes to take effect.
 const PRODUCT_MODULE_ENABLED =
-  process.env.FEATURE_PRODUCTMODULE_ENABLED || false
+  process.env.FEATURE_PRODUCTMODULE_ENABLED || true
 
 // The API_BASE_URL is set in the .env file. It is the base URL of your Next.js app.
-const API_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:8000"
+const API_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://artesanatosdazizi.com.br"
 
 /**
  * Fetches a product by handle, using the Medusa API or the Medusa Product Module, depending on the feature flag.
