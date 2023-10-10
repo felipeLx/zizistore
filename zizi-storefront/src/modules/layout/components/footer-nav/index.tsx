@@ -14,13 +14,13 @@ const FooterNav = () => {
       <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between">
         <div>
           <Link href="/" className="text-xl-semi uppercase">
-            Acme
+            Artesanatos da Zizi
           </Link>
         </div>
         <div className="text-small-regular grid grid-cols-3 gap-x-10 md:gap-x-16">
           {product_categories && (
             <div className="flex flex-col gap-y-2">
-              <span className="text-base-semi">Categories</span>
+              <span className="text-base-semi">Categorias</span>
               <ul className="grid grid-cols-1 gap-2">
                 {product_categories?.slice(0, 6).map((c) => {
                   if (c.parent_category) {
@@ -62,7 +62,7 @@ const FooterNav = () => {
           )}
           {collections && (
             <div className="flex flex-col gap-y-2">
-              <span className="text-base-semi">Collections</span>
+              <span className="text-base-semi">Coleções</span>
               <ul
                 className={clsx("grid grid-cols-1 gap-2", {
                   "grid-cols-2": (collections?.length || 0) > 3,
@@ -76,43 +76,11 @@ const FooterNav = () => {
               </ul>
             </div>
           )}
-          <div className="flex flex-col gap-y-2">
-            <span className="text-base-semi">Medusa</span>
-            <ul className="grid grid-cols-1 gap-y-2">
-              <li>
-                <a
-                  href="https://github.com/medusajs"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  GitHub
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://docs.medusajs.com"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Documentation
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://github.com/medusajs/nextjs-starter-medusa"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Source code
-                </a>
-              </li>
-            </ul>
-          </div>
         </div>
       </div>
       <div className="flex flex-col-reverse gap-y-4 justify-center xsmall:items-center xsmall:flex-row xsmall:items-end xsmall:justify-between">
         <span className="text-xsmall-regular text-gray-500">
-          © Copyright 2022 ACME
+          © Copyright 2022 Artesanatos da Zizi
         </span>
         <div className="min-w-[316px] flex xsmall:justify-end">
           <CountrySelect />

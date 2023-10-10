@@ -31,12 +31,12 @@ const MainMenu = () => {
             className="flex items-center gap-x-2"
             onClick={setScreenCountry}
           >
-            <ReactCountryFlag countryCode={countryCode || "us"} svg />
+            <ReactCountryFlag countryCode={countryCode || "br"} svg />
             <ChevronDown />
           </button>
         </div>
         <div>
-          <h1 className="text-xl-semi uppercase">Acme</h1>
+          <h1 className="text-xl-semi uppercase">Artesanatos da Zizi</h1>
         </div>
         <div className="flex-1 basis-0 flex justify-end">
           <button onClick={close}>
